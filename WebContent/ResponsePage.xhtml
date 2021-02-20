@@ -4,17 +4,17 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html">
-
-	<h:head>
+	  
+	  <h:head>
 		<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>	 
 	 
 	 </h:head> 
-	  	  
+	  
+	  
   
   <body>
-  	<H1>Please fill out the form.</H1>
   	<div class="topmenu">
-  	<h:form>
+  		<h:form>
   			<h:commandButton action="#{formController.showEntryForm()}" value="
   			create a new thing" />
   			<h:commandButton action="#{formController.showIndex()}" value="Show all" />
@@ -22,27 +22,12 @@
   		
   	</div>
   
-  	
-  	<div class="inputform">
-  	<h:form>
-  		<p>
-  		Tell me something nice:
-  		<h:inputText value="#{beautifulThing.thingTitle}" />
-  		</p>
-  		<p>
-  		Now describe it:
-  		<h:inputText value="#{beautifulThing.thingDescription}" />
-  		</p>
-  		<p>
-  		Rate this Item:
-  		<h:inputText value="#{beautifulThing.rating}" />
-  		</p>
-  		<p>
-  		<h:commandButton action="#{formController.onSubmitCreate()}" value="OK" />
-  		</p>
-  		
-  	
-  	</h:form>
-  	</div>
+  
+  <div class="inputform">
+  	Response Page:
+  		<h:outputLabel value="#{beautifulThing.thingTitle}" />
+  		<h:outputLabel value="#{beautifulThing.thingDescription}" />
+  		<h:outputLabel value="#{beautifulThing.rating}"/>
+  </div>
   </body>
   </html>

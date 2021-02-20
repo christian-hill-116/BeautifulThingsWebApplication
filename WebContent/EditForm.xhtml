@@ -12,7 +12,8 @@
 	  	  
   
   <body>
-  	<H1>Please fill out the form.</H1>
+ 
+  	<H1>Please make any changes you like.</H1>
   	<div class="topmenu">
   	<h:form>
   			<h:commandButton action="#{formController.showEntryForm()}" value="
@@ -25,6 +26,10 @@
   	
   	<div class="inputform">
   	<h:form>
+  	
+  	<h:inputHidden value="#{beautifulThing.id}" />
+  	
+  	
   		<p>
   		Tell me something nice:
   		<h:inputText value="#{beautifulThing.thingTitle}" />
@@ -38,7 +43,7 @@
   		<h:inputText value="#{beautifulThing.rating}" />
   		</p>
   		<p>
-  		<h:commandButton action="#{formController.onSubmitCreate()}" value="OK" />
+  		<h:commandButton action="#{formController.onSubmitEdit()}" value="OK" />
   		</p>
   		
   	

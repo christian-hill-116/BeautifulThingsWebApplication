@@ -1,0 +1,28 @@
+@charset "UTF-8";
+*{
+	font-family: helvetica;
+	
+}
+
+body{
+	background-color: #DDD;
+	
+}
+
+.inputform, table{
+	border: 1px solid black;
+	margin: auto;
+	width: 80%;
+	border-radius: 5px;
+	background-color: #eee;
+	padding: 10px;
+	
+}
+
+.topmenu{
+	border: 1px solid #CACACA;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 3px;
+	
+}

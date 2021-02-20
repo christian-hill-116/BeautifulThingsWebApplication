@@ -19,6 +19,10 @@ public class BeautifulThing {
 		this.rating = rating;
 	}
 	
+	public BeautifulThing() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

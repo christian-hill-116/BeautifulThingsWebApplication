@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN"
+    "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	  
+	 <h:head>
+		<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>	 
+	 
+	 </h:head> 
+	  
+  
+  <body>
+  	<div class="topmenu">
+  		<h:form>
+  			<h:commandButton action="#{formController.showEntryForm()}" value="
+  			create a new thing" />
+  			<h:commandButton action="#{formController.showIndex()}" value="Show all" />
+  		</h:form>
+  		
+  	</div>
+  
+  
+  	<h:dataTable value="#{formController.getAll()}" var="thing">
+  		<h:column>
+  			<f:facet name="header">I.D.</f:facet>
+  				<h:outputText value="#{thing.id}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Title</f:facet>
+  				<h:outputText value="#{thing.thingTitle}" />
+		</h:column>	
+		
+		<h:column>
+			<f:facet name="header">Description</f:facet>
+  				<h:outputText value="#{thing.thingDescription}" />
+		</h:column>
+	
+		<h:column>
+			<f:facet name="header">Rating</f:facet>
+  				<h:outputText value="#{thing.rating}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Deletes</f:facet>
+  				<h:form>
+  					<h:commandButton action="#{formController.onDelete(thing)}" value="Delete" />
+  				</h:form>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Edits</f:facet>
+  				<h:form>
+  					<h:commandButton action="#{formController.onShowEdit(thing)}" value="Edit" />
+  				</h:form>
+		</h:column>
+  				
+  		
+  		
+  	
+  	
+  	</h:dataTable>
+  
+  </body>
+  </html>
