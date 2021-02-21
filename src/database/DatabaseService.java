@@ -8,19 +8,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+
 import beans.BeautifulThing;
 
-public class DatabaseService {
+
+@Stateless
+@Local
+@Alternative
+public class DatabaseService implements DatabaseInterface{
+	
+	//connect
+	String dbURL = "jdbc:mysql://localhost:3306/beautifulThings";
+	String user = "root";
+	String password = "root";
 	
 	//four crud operations
-	public int deleteOne(int id) throws SQLException {
+	public int deleteOne(int id) {
 		
 		int numberOfRowsAffected = 0;
 		
-		//connect
-				String dbURL = "jdbc:mysql://localhost:3306/beautifulThings";
-				String user = "root";
-				String password = "root";
+		
 				
 				Connection c = null;
 				PreparedStatement stmt = null;
@@ -45,24 +55,26 @@ public class DatabaseService {
 				}finally {
 					//close the connection to the db.
 					
-					stmt.close();
+					try {
+						stmt.close();
+						c.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
-					c.close();
+					
 					
 				}
 		
 		return numberOfRowsAffected;
 	}
 	
-	public int insertOne(BeautifulThing b) throws SQLException {
+	public int insertOne(BeautifulThing b){
 		
 		int numberOfRowsAffected = 0;
 		
-			//connect
-				String dbURL = "jdbc:mysql://localhost:3306/beautifulThings";
-				String user = "root";
-				String password = "root";
-		
+			
 				Connection c = null;
 				PreparedStatement stmt = null;
 				int rowsAffected = 0;
@@ -89,24 +101,25 @@ public class DatabaseService {
 				}finally {
 					//close the connection to the db.
 			
-					stmt.close();
+					try {
+						stmt.close();
+						c.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			
-					c.close();
+				
 			
 		}
 		
 		return numberOfRowsAffected;
 	}
 	
-	public ArrayList<BeautifulThing> readAll() throws SQLException{
+	public ArrayList<BeautifulThing> readAll(){
 		ArrayList<BeautifulThing> everyone = new ArrayList<>();
 		BeautifulThing b;
 		
-		
-		//connect
-		String dbURL = "jdbc:mysql://localhost:3306/beautifulThings";
-		String user = "root";
-		String password = "root";
 		
 		Connection c = null;
 		Statement stmt = null;
@@ -136,23 +149,25 @@ public class DatabaseService {
 			e.printStackTrace();
 		}finally {
 			//close the connection to the db.
-			rs.close();
-			stmt.close();
-			c.close();
+			try {
+				rs.close();
+				stmt.close();
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		}
 		
 		return everyone;
 	}
 	
-	public int updateOne(int id, BeautifulThing b) throws SQLException {
+	public int updateOne(int id, BeautifulThing b) {
 
 		int numberOfRowsAffected = 0;
 		
-		//connect
-		String dbURL = "jdbc:mysql://localhost:3306/beautifulThings";
-		String user = "root";
-		String password = "root";
 		
 		Connection c = null;
 		PreparedStatement stmt = null;
@@ -180,9 +195,15 @@ public class DatabaseService {
 		}finally {
 			//close the connection to the db.
 			
-			stmt.close();
+			try {
+				stmt.close();
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			c.close();
+			
 			
 		}
 		

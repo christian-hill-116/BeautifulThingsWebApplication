@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import beans.BeautifulThing;
-import database.DatabaseService;
+import business.BusinessServiceInterface;
+
 
 @ManagedBean
 public class FormController {
@@ -15,6 +17,9 @@ public class FormController {
 	public FormController() {
 		
 	}
+	
+	@Inject
+	BusinessServiceInterface bs;
 	
 	public String onSubmitCreate() throws SQLException {
 		
@@ -30,8 +35,8 @@ public class FormController {
 		
 		
 		//store object in the database
-		DatabaseService ds = new DatabaseService();
-		ds.insertOne(b);
+		
+		bs.insertOne(b);
 		
 		//put the get values in a response page
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("beautifulThing", b);
@@ -55,8 +60,8 @@ public String onSubmitEdit() throws SQLException {
 		
 		
 		//store object in the database
-		DatabaseService ds = new DatabaseService();
-		ds.updateOne(b.getId(), b);
+		
+		bs.updateOne(b.getId(), b);
 		
 		//put the get values in a response page
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("beautifulThing", b);
@@ -69,9 +74,9 @@ public String onSubmitEdit() throws SQLException {
 	public ArrayList<BeautifulThing> getAll() throws SQLException{
 
 		
-		DatabaseService ds = new DatabaseService();
 		
-		return ds.readAll();
+		
+		return bs.readAll();
 	
 		
 	}
@@ -85,8 +90,8 @@ public String onSubmitEdit() throws SQLException {
 		
 		
 		//store object in the database
-		DatabaseService ds = new DatabaseService();
-		ds.deleteOne(b.getId());
+		
+		bs.deleteOne(b.getId());
 		
 		//put the get values in a response page
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("beautifulThing", b);
